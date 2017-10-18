@@ -3,6 +3,8 @@ package clases;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -21,6 +23,7 @@ public class Controlador
         this.v = new Vista( this.m ); // Nueva Vista con una referencia al Modelo
         this.v.tecladoListener( new TecladoHandler() ); // Manejar el evento de teclado
         this.v.cambiarImagenListener( new CambiarImagenHandler() ); // Manejar el evento de accion sobre un cambio de pieza
+        this.v.modoMovimientoListener( new ModoMovimientoHandler() ); // Manejar el evento de cambio de estado de un item
         this.v.iniciarVista(); // Le ordeno a la vista que se muestre
         this.mezclar(50); // Para mezclar, es necesario que el tablero ya este colocado
     }
@@ -46,8 +49,16 @@ public class Controlador
             Si se desea que los cursores muevan la pieza vacia, next = 1 y back = -1
             Si se desea que los cursores muevan las piezas visibles, next = -1 y back = 1
         */
-        int next = -1; // Hacia adelante
-        int back = 1; // Hacia atras
+        int next;
+        int back;
+        if ( m.isModoMoverVacia() ) {
+            next = 1; // Hacia adelante
+            back = -1; // Hacia atras
+        }
+        else {
+            next = -1; // Hacia adelante
+            back = 1; // Hacia atras
+        }
         switch (codigoDeTecla) {
             case 37: desplazarPiezaVacia(0,back); break; // Izquierda: Misma fila, anterior columna
             case 38: desplazarPiezaVacia(back,0); break; // Arriba: Anterior fila, misma columna
@@ -102,6 +113,14 @@ public class Controlador
             int indiceDeCategoria = Integer.parseInt( e.getActionCommand() );
             m.getTableroActual().cambiarImagenDePiezas( indiceDeCategoria );
             v.actualizarPiezas();
+        }
+    }
+    
+    private class ModoMovimientoHandler implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            m.actualizarModo();
         }
     }
 }

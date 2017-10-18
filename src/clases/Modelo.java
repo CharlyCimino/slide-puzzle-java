@@ -11,6 +11,7 @@ public class Modelo {
     private Tablero tableroGanador;
     private Tablero tableroActual;
     private int cantidadDeMovimientos;
+    private boolean modoMoverVacia;
 
     public Modelo() {
         this.DIMENSION = 3; // Es una matriz de 3x3
@@ -37,6 +38,14 @@ public class Modelo {
     
     public void resetearMovimientos() {
         this.cantidadDeMovimientos = 0;
+    }
+    
+    public boolean isModoMoverVacia() {
+        return modoMoverVacia;
+    }
+
+    public void actualizarModo() {
+        this.modoMoverVacia = !this.modoMoverVacia;
     }
     
 }
