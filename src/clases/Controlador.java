@@ -28,9 +28,11 @@ public class Controlador
         int nuevaY = actualY + sentidoY; // Nueva coordenada Y de pieza vacia
         if ( esCoordenadaValida(nuevaX, nuevaY) ) { // Si no se desborda
             // INTERCAMBIO LOGICO
-            // IMPLEMENTAR. Debe intercambiar la pieza vacia con otra pieza en el modelo
+            this.m.getTableroActual().intercambiar(actualX,actualY,nuevaX,nuevaY);
             // INTERCAMBIO VISUAL
-            // IMPLEMENTAR. Debe intercambiar la pieza vacia con otra pieza en la vista
+            Pieza p1 = this.m.getTableroActual().devolverPieza(actualX, actualY);
+            Pieza p2 = this.m.getTableroActual().devolverPieza(nuevaX, nuevaY);
+            this.v.intercambiar( p1.getNumeroDePieza() , p2.getNumeroDePieza() );
         }
     }
     
