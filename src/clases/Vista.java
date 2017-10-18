@@ -28,6 +28,8 @@ public class Vista extends javax.swing.JFrame
         this.setLocationRelativeTo(null); // Aparecerá en el centro de la pantalla
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); // La aplicación por defecto se cierra al tocar la cruz
         this.establecerIcono(); // OPCIONAL. Personaliza el ícono de la ventana
+        this.colocarTablero();
+        this.hacerInvisible( (this.m.DIMENSION * this.m.DIMENSION) - 1 );
         this.setVisible(true); // Hace la ventana visible
     }
     
@@ -53,7 +55,7 @@ public class Vista extends javax.swing.JFrame
     }
     
     private void hacerInvisible (int numeroDePieza) {
-        // IMPLEMENTAR
+        this.jPanelTablero.getComponent( numeroDePieza ).setVisible(false);
     }
     
     
