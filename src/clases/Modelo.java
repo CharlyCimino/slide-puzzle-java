@@ -12,11 +12,14 @@ public class Modelo {
     private Tablero tableroActual;
     private int cantidadDeMovimientos;
     private boolean modoMoverVacia;
+    private String sonidoBeep;
+    private String sonidoGanador;
 
     public Modelo() {
         this.DIMENSION = 3; // Es una matriz de 3x3
         this.tableroGanador = new Tablero(this.DIMENSION); // Piezas en su lugar
         this.tableroActual = new Tablero(this.DIMENSION); // Sujeto a movimientos
+        this.establecerCategoriaDeSonidos(1);
     }
     
     public Tablero getTableroActual() {
@@ -48,4 +51,24 @@ public class Modelo {
         this.modoMoverVacia = !this.modoMoverVacia;
     }
     
+    public String getSonidoBeep() {
+        return sonidoBeep;
+    }
+
+    public String getSonidoGanador() {
+        return sonidoGanador;
+    }
+    
+    public void establecerCategoriaDeSonidos (int cat) {
+        switch (cat) {
+            case 1: efectuarCambio("emoticon"); break;
+            case 2: efectuarCambio("guitarra"); break;
+            case 3: efectuarCambio("futbol"); break;
+        }
+    }
+
+    private void efectuarCambio(String nombre) {
+        this.sonidoBeep = nombre + "-beep.wav";
+        this.sonidoGanador = nombre + "-win.wav";
+    }
 }

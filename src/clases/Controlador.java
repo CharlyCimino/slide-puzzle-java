@@ -16,11 +16,13 @@ public class Controlador
 {
     private Modelo m;
     private Vista v;
+    ReproductorDeAudio r;
 
     public void iniciar()
     {
         this.m = new Modelo(); // Nuevo Modelo
         this.v = new Vista( this.m ); // Nueva Vista con una referencia al Modelo
+        this.r = new ReproductorDeAudio(); // Nuevo ReproductorDeAudio
         this.v.tecladoListener( new TecladoHandler() ); // Manejar el evento de teclado
         this.v.cambiarImagenListener( new CambiarImagenHandler() ); // Manejar el evento de accion sobre un cambio de pieza
         this.v.modoMovimientoListener( new ModoMovimientoHandler() ); // Manejar el evento de cambio de estado de un item
@@ -80,10 +82,15 @@ public class Controlador
     
     private void detectarVictoria() {
         if ( this.m.gano() ) {
+            reproducirSonido( "src/recursos/" + m.getSonidoGanador() );
             this.v.mostrarCartelGanador( m.getCantidadDeMovimientos() );
             this.m.resetearMovimientos();
             this.mezclar(50);
         }
+    }
+    
+    private void reproducirSonido (String ruta) {
+        this.r.reproducir(ruta);
     }
     
     private class TecladoHandler implements KeyListener {
@@ -99,6 +106,7 @@ public class Controlador
                 Abajo (40)
             */
             moverSegunTecla( e.getKeyCode() ); // Muevo en agluna direccion segun la tecla detectada
+            reproducirSonido( "src/recursos/" + m.getSonidoBeep() );
             m.contarMovimiento();
             detectarVictoria(); // Por cada movimiento debo chequear si resulta ganador
         }
@@ -112,6 +120,7 @@ public class Controlador
         public void actionPerformed(ActionEvent e) {
             int indiceDeCategoria = Integer.parseInt( e.getActionCommand() );
             m.getTableroActual().cambiarImagenDePiezas( indiceDeCategoria );
+            m.establecerCategoriaDeSonidos(indiceDeCategoria);
             v.actualizarPiezas();
         }
     }
