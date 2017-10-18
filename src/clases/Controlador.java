@@ -53,8 +53,7 @@ public class Controlador
     }
     
     private boolean esCoordenadaValida (int x, int y) {
-        // IMPLEMENTAR. Debe devolver true o false segun los valores de x e y
-        return false;
+        return (x >= 0 && x < this.m.DIMENSION) && (y >= 0 && y < this.m.DIMENSION);
     }
     
     private class TecladoHandler implements KeyListener {
