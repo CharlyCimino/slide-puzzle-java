@@ -64,6 +64,22 @@ public class Tablero {
     public int getVaciaY() {
         return vaciaY;
     }
+    
+    public void cambiarImagenDePiezas(int numero) {
+        switch (numero) {
+            case 1: efectuarCambio("emoticon"); break;
+            case 2: efectuarCambio("guitarra"); break;
+            case 3: efectuarCambio("futbol"); break;
+        }
+    }
+    
+    private void efectuarCambio (String categoria) {
+        for (int i = 0; i < this.piezas.length; i++) {
+            for (int j = 0; j < this.piezas[0].length; j++) {
+                this.piezas[i][j].cambiarImagen(categoria);
+            }
+        }
+    }
 
     @Override
     public String toString() {

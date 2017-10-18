@@ -10,6 +10,7 @@ public class Modelo {
     public final int DIMENSION;
     private Tablero tableroGanador;
     private Tablero tableroActual;
+    private int cantidadDeMovimientos;
 
     public Modelo() {
         this.DIMENSION = 3; // Es una matriz de 3x3
@@ -25,4 +26,13 @@ public class Modelo {
         // Si las representaciones son identicas, se concluye que llego a la solucion
         return this.tableroActual.toString().equals(this.tableroGanador.toString());
     }
+    
+    public int getCantidadDeMovimientos() {
+        return cantidadDeMovimientos;
+    }
+
+    public void contarMovimiento() {
+        this.cantidadDeMovimientos++;
+    }
+    
 }

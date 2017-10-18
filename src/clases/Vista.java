@@ -4,14 +4,13 @@ package clases;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author caemci
- */
 public class Vista extends javax.swing.JFrame 
 {
     private Modelo m;
@@ -56,8 +55,22 @@ public class Vista extends javax.swing.JFrame
         }
     }
     
+    public void actualizarPiezas() {
+        int contador = 0;
+        for (int i = 0; i < this.m.DIMENSION; i++) {
+            for (int j = 0; j < this.m.DIMENSION; j++) {
+                Pieza p = this.m.getTableroActual().devolverPieza(i, j);
+                javax.swing.JLabel contenedor = (javax.swing.JLabel) this.jPanelTablero.getComponent( contador );
+                contenedor.setIcon(new ImageIcon(getClass().getResource("/recursos/" + p.getNombreDeLaImagen())));
+                contenedor.setText("");
+                contador++;
+            }
+        }
+    }
+    
     private void hacerInvisible (int numeroDePieza) {
-        this.jPanelTablero.getComponent( numeroDePieza ).setVisible(false);
+        JLabel contenedor = (JLabel) this.jPanelTablero.getComponent( numeroDePieza );
+        contenedor.setVisible(false);
     }
     
     public void intercambiar (int piezaA, int piezaB) {
@@ -84,8 +97,24 @@ public class Vista extends javax.swing.JFrame
         return 0;
     }
     
-    public void mostrarCartelGanador () {
-        JOptionPane.showMessageDialog(null, "Felicitaciones, ganaste el juego !","GANADOR",1);
+    public void mostrarCartelGanador (int cantMovimientos) {
+        String leyenda = "";
+        // IMPLEMENTAR
+        // Si termina en 15 mov o menos:                "SOS LO MAS CERCANO A DIOS"
+        // Si termina entre 16 y 40 (inclusive) mov:    "BIEN";
+        // Si termina en 41 mov o mas:                  "¿Costó bastante, verdad?"
+        leyenda += ", ganaste el juego en " + cantMovimientos + " movimientos.";
+        JOptionPane.showMessageDialog(null, leyenda, "GANADOR", 1);
+    }
+    
+    public void cambiarImagenListener (ActionListener al) {
+        this.jMenuItem1.addActionListener(al);
+        this.jMenuItem2.addActionListener(al);
+        this.jMenuItem3.addActionListener(al);
+    }
+    
+    public void modoMovimientoListener (ItemListener il) {
+        this.jCheckBoxMenuItem1.addItemListener(il);
     }
     
     @SuppressWarnings("unchecked")
@@ -102,6 +131,13 @@ public class Vista extends javax.swing.JFrame
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuPiezas = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuModo = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Slide Puzzle 3x3");
@@ -180,11 +216,40 @@ public class Vista extends javax.swing.JFrame
 
         getContentPane().add(jPanelTablero);
 
+        jMenuPiezas.setText("Piezas");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/emoticon-icono.jpg"))); // NOI18N
+        jMenuItem1.setText("Emoticon");
+        jMenuItem1.setActionCommand("1");
+        jMenuPiezas.add(jMenuItem1);
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guitarra-icono.jpg"))); // NOI18N
+        jMenuItem2.setText("Guitarra");
+        jMenuItem2.setActionCommand("2");
+        jMenuPiezas.add(jMenuItem2);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/futbol-icono.jpg"))); // NOI18N
+        jMenuItem3.setText("Futbol");
+        jMenuItem3.setActionCommand("3");
+        jMenuPiezas.add(jMenuItem3);
+
+        jMenuBar1.add(jMenuPiezas);
+
+        jMenuModo.setText("Modo");
+
+        jCheckBoxMenuItem1.setText("Mover pieza vacía");
+        jMenuModo.add(jCheckBoxMenuItem1);
+
+        jMenuBar1.add(jMenuModo);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -194,6 +259,12 @@ public class Vista extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu jMenuModo;
+    private javax.swing.JMenu jMenuPiezas;
     private javax.swing.JPanel jPanelTablero;
     // End of variables declaration//GEN-END:variables
 }

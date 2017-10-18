@@ -1,6 +1,8 @@
 
 package clases;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -66,7 +68,9 @@ public class Controlador
     
     private void detectarVictoria() {
         if ( this.m.gano() ) {
-            this.v.mostrarCartelGanador();
+            this.v.mostrarCartelGanador(0); 
+            // IMPLEMENTAR. Pedirle al modelo la cantidad de movimientos para
+            // mostrarlos por pantalla
         }
     }
     
@@ -88,5 +92,14 @@ public class Controlador
 
         @Override
         public void keyReleased(KeyEvent e) {}
+    }
+    
+    private class CambiarImagenHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int indiceDeCategoria = Integer.parseInt( e.getActionCommand() );
+            m.getTableroActual().cambiarImagenDePiezas( indiceDeCategoria );
+            v.actualizarPiezas();
+        }
     }
 }
