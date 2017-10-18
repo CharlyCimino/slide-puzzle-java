@@ -46,7 +46,10 @@ public class Tablero {
     }
     
     public void intercambiar (int x1, int y1, int x2, int y2) {
-        // IMPLEMENTAR. Se debe intercambiar la pieza ubicada en [x1][y1] con la ubicada en [x2][y2]
+        Pieza aux = this.piezas[x1][y1];
+        this.piezas[x1][y1] = this.piezas[x2][y2];
+        this.piezas[x2][y2] = aux;
+        establecerCoordenadasPiezaVacia(x2, y2);
     }
     
     public void establecerCoordenadasPiezaVacia (int x, int y) {
