@@ -22,8 +22,7 @@ public class Modelo {
     }
     
     public boolean gano() {
-        // IMPLEMENTAR. Debe devolver true o false segun si el 
-        // tablero actual coincide exactamente con el tablero ganador
-        return false;
+        // Si las representaciones son identicas, se concluye que llego a la solucion
+        return this.tableroActual.toString().equals(this.tableroGanador.toString());
     }
 }

@@ -62,8 +62,9 @@ public class Controlador
     }
     
     private void detectarVictoria() {
-        // IMPLEMENTAR. Verificar si resulta ganador del juego
-        // En caso afirmativo, mostrar un cartel de felicitacion.
+        if ( this.m.gano() ) {
+            this.v.mostrarCartelGanador();
+        }
     }
     
     private class TecladoHandler implements KeyListener {
@@ -79,6 +80,7 @@ public class Controlador
                 Abajo (40)
             */
             moverSegunTecla( e.getKeyCode() ); // Muevo en agluna direccion segun la tecla detectada
+            detectarVictoria(); // Por cada movimiento debo chequear si resulta ganador
         }
 
         @Override
