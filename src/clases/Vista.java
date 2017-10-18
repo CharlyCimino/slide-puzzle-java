@@ -1,6 +1,7 @@
 
 package clases;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
@@ -58,6 +59,29 @@ public class Vista extends javax.swing.JFrame
         this.jPanelTablero.getComponent( numeroDePieza ).setVisible(false);
     }
     
+    public void intercambiar (int piezaA, int piezaB) {
+        Component[] listaDeComponentes = this.jPanelTablero.getComponents();
+        int indicePiezaA = buscarPieza(piezaA);
+        int indicePiezaB = buscarPieza(piezaB);
+        this.jPanelTablero.removeAll();
+        Component temp = listaDeComponentes[indicePiezaA];
+        listaDeComponentes[indicePiezaA] = listaDeComponentes[indicePiezaB];
+        listaDeComponentes[indicePiezaB] = temp;
+        for (int i = 0; i < listaDeComponentes.length; i++) {
+            this.jPanelTablero.add(listaDeComponentes[i]);
+        }             
+        this.jPanelTablero.validate();
+    }
+    
+    private int buscarPieza (int numero) {
+        Component[] listaDeComponentes = this.jPanelTablero.getComponents();
+        for (int i = 0; i < listaDeComponentes.length; i++) {
+            if ( listaDeComponentes[i].getName().equals("pieza"+numero) ) {
+                return i;
+            }
+        }
+        return 0;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

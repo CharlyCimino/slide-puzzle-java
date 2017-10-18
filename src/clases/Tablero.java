@@ -45,6 +45,10 @@ public class Tablero {
         return null; // Se supone que nunca llega hasta aquí, pero si no se coloca un return, no compila
     }
     
+    public void intercambiar (int x1, int y1, int x2, int y2) {
+        // IMPLEMENTAR. Se debe intercambiar la pieza ubicada en [x1][y1] con la ubicada en [x2][y2]
+    }
+    
     public void establecerCoordenadasPiezaVacia (int x, int y) {
         this.vaciaX = x;
         this.vaciaY = y;
