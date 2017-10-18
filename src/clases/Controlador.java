@@ -19,6 +19,7 @@ public class Controlador
         this.v = new Vista( this.m ); // Nueva Vista con una referencia al Modelo
         this.v.tecladoListener( new TecladoHandler() ); // Manejar el evento de teclado
         this.v.iniciarVista(); // Le ordeno a la vista que se muestre
+        this.mezclar(50); // Para mezclar, es necesario que el tablero ya este colocado
     }
     
     private void desplazarPiezaVacia(int sentidoX, int sentidoY) {
@@ -57,8 +58,10 @@ public class Controlador
     }
     
     private void mezclar (int veces) {
-        // IMPLEMENTAR. Se debe llamar un numero de veces a moverSegunTecla() 
-        // cada vez con un numero aleatorio entre 37 y 40.
+        for (int i = 0; i < veces; i++) { // Mezclar es realizar muchos movimientos aleatorios
+            int aleatorio = (int) Math.floor(Math.random() * 4); // Aleatorio entre 0 y 3 (inclusive)
+            moverSegunTecla(37 + aleatorio); // Muevo. Siempre resulta un numero entre 37 y 40 (inclusive)
+        }
     }
     
     private void detectarVictoria() {
