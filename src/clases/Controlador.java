@@ -56,6 +56,16 @@ public class Controlador
         return (x >= 0 && x < this.m.DIMENSION) && (y >= 0 && y < this.m.DIMENSION);
     }
     
+    private void mezclar (int veces) {
+        // IMPLEMENTAR. Se debe llamar un numero de veces a moverSegunTecla() 
+        // cada vez con un numero aleatorio entre 37 y 40.
+    }
+    
+    private void detectarVictoria() {
+        // IMPLEMENTAR. Verificar si resulta ganador del juego
+        // En caso afirmativo, mostrar un cartel de felicitacion.
+    }
+    
     private class TecladoHandler implements KeyListener {
         @Override
         public void keyTyped(KeyEvent e) {}

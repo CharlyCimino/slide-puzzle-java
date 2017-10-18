@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,6 +82,10 @@ public class Vista extends javax.swing.JFrame
             }
         }
         return 0;
+    }
+    
+    public void mostrarCartelGanador () {
+        JOptionPane.showMessageDialog(null, "Felicitaciones, ganaste el juego !","GANADOR",1);
     }
     
     @SuppressWarnings("unchecked")

@@ -21,4 +21,9 @@ public class Modelo {
         return this.tableroActual;
     }
     
+    public boolean gano() {
+        // IMPLEMENTAR. Debe devolver true o false segun si el 
+        // tablero actual coincide exactamente con el tablero ganador
+        return false;
+    }
 }
