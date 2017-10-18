@@ -20,6 +20,7 @@ public class Controlador
         this.m = new Modelo(); // Nuevo Modelo
         this.v = new Vista( this.m ); // Nueva Vista con una referencia al Modelo
         this.v.tecladoListener( new TecladoHandler() ); // Manejar el evento de teclado
+        this.v.cambiarImagenListener( new CambiarImagenHandler() ); // Manejar el evento de accion sobre un cambio de pieza
         this.v.iniciarVista(); // Le ordeno a la vista que se muestre
         this.mezclar(50); // Para mezclar, es necesario que el tablero ya este colocado
     }

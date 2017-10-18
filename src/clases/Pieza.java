@@ -23,9 +23,9 @@ public class Pieza {
     }
     
     public void cambiarImagen (String categoria) {
-        // IMPLEMENTAR. Cambiar el nombre actual "emoticon-0.jpg" por "categoria-0.jpg"
-        // donde categoria es el valor que llega por parametro
-        // (no existe una imagen llamada literalmente "categoria-0.jpg", se debe usar el valor que llega por parametro)
+        int indiceDelGuion = this.nombreDeLaImagen.indexOf('-');
+        String resto = this.nombreDeLaImagen.substring(indiceDelGuion);
+        this.nombreDeLaImagen = categoria + resto;
     }
 
     @Override
