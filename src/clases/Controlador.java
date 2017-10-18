@@ -68,9 +68,9 @@ public class Controlador
     
     private void detectarVictoria() {
         if ( this.m.gano() ) {
-            this.v.mostrarCartelGanador(0); 
-            // IMPLEMENTAR. Pedirle al modelo la cantidad de movimientos para
-            // mostrarlos por pantalla
+            this.v.mostrarCartelGanador( m.getCantidadDeMovimientos() );
+            this.m.resetearMovimientos();
+            this.mezclar(50);
         }
     }
     
@@ -87,6 +87,7 @@ public class Controlador
                 Abajo (40)
             */
             moverSegunTecla( e.getKeyCode() ); // Muevo en agluna direccion segun la tecla detectada
+            m.contarMovimiento();
             detectarVictoria(); // Por cada movimiento debo chequear si resulta ganador
         }
 

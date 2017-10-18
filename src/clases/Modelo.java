@@ -35,4 +35,8 @@ public class Modelo {
         this.cantidadDeMovimientos++;
     }
     
+    public void resetearMovimientos() {
+        this.cantidadDeMovimientos = 0;
+    }
+    
 }

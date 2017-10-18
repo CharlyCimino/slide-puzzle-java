@@ -99,10 +99,13 @@ public class Vista extends javax.swing.JFrame
     
     public void mostrarCartelGanador (int cantMovimientos) {
         String leyenda = "";
-        // IMPLEMENTAR
-        // Si termina en 15 mov o menos:                "SOS LO MAS CERCANO A DIOS"
-        // Si termina entre 16 y 40 (inclusive) mov:    "BIEN";
-        // Si termina en 41 mov o mas:                  "¿Costó bastante, verdad?"
+        if ( cantMovimientos <= 15) {
+            leyenda = "SOS LO MAS CERCANO A DIOS";
+        } else if ( cantMovimientos <= 40 ) {
+            leyenda = "BIEN";
+        } else {
+            leyenda = "¿Costó bastante, verdad?";
+        }
         leyenda += ", ganaste el juego en " + cantMovimientos + " movimientos.";
         JOptionPane.showMessageDialog(null, leyenda, "GANADOR", 1);
     }
