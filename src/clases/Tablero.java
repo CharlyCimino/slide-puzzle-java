@@ -12,22 +12,37 @@ public class Tablero {
 
     public Tablero(int dim) { // Dimension (por defecto 3)
         this.piezas = new Pieza[dim][dim]; // Nueva matriz (por defecto, 3x3)
-        crearPiezas();
-        establecerCoordenadasPiezaVacia( dim-1 , dim-1 ); // Posicion inicial de la pieza vacia (por defecto, 2;2)
+        this.crearPiezas();
+        this.establecerCoordenadasPiezaVacia( dim-1 , dim-1 ); // Posicion inicial de la pieza vacia (por defecto, 2;2)
     }
 
     private void crearPiezas() {
-        // IMPLEMENTAR
+        int contador = 0; // Lleva la cuenta para saber en qué posicion estoy
+        for (int i = 0; i < this.piezas.length; i++) {
+            for (int j = 0; j < this.piezas[0].length; j++) {
+                this.piezas[i][j] = new Pieza(contador); // Asigna una nuevo objeto Pieza en la posicion [i][j]
+                contador++; // Incremento en 1 el contador
+            }
+        }
     }
     
     public Pieza devolverPieza(int i, int j) { // Mediante coordenadas en matriz
-        // IMPLEMENTAR
-        return null;
+        return this.piezas[i][j]; // Devuelve el objeto Pieza en la posicion [i][j]
     }
     
     public Pieza devolverPieza(int n) { // Mediante numero de pieza
-        // IMPLEMENTAR
-        return null;
+        int contador = 0; // Lleva la cuenta para saber en qué posicion estoy
+        for (int i = 0; i < this.piezas.length; i++) {
+            for (int j = 0; j < this.piezas[0].length; j++) {
+                if (contador == n) { // Si encuentra a la pieza
+                    return this.piezas[i][j]; // Devuelve el objeto Pieza en la posicion [i][j]
+                }
+                else {
+                    contador++; // Incremento en 1 el contador
+                }
+            }
+        }
+        return null; // Se supone que nunca llega hasta aquí, pero si no se coloca un return, no compila
     }
     
     public void establecerCoordenadasPiezaVacia (int x, int y) {
@@ -45,6 +60,7 @@ public class Tablero {
 
     @Override
     public String toString() {
+        // Para que al mostrar un tablero en la consola, se represente como una verdadera matriz cuadrada
         String representacion = "";
         for (int i = 0; i < this.piezas.length; i++) {
             for (int j = 0; j < this.piezas[0].length; j++) {
