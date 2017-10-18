@@ -42,7 +42,12 @@ public class Controlador
         */
         int next = -1; // Hacia adelante
         int back = 1; // Hacia atras
-        // IMPLEMENTAR. Debe desplazar la pieza vacía según el número de tecla presionada
+        switch (codigoDeTecla) {
+            case 37: desplazarPiezaVacia(0,back); break; // Izquierda: Misma fila, anterior columna
+            case 38: desplazarPiezaVacia(back,0); break; // Arriba: Anterior fila, misma columna
+            case 39: desplazarPiezaVacia(0,next); break; // Derecha: Misma fila, siguiente columna
+            case 40: desplazarPiezaVacia(next,0); break; // Abajo: Siguiente fila, misma columna
+        }
     }
     
     private boolean esCoordenadaValida (int x, int y) {
@@ -62,7 +67,7 @@ public class Controlador
                 Derecha (39)
                 Abajo (40)
             */
-            // IMPLEMENTAR
+            moverSegunTecla( e.getKeyCode() ); // Muevo en agluna direccion segun la tecla detectada
         }
 
         @Override
